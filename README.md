@@ -26,6 +26,9 @@ Using the program is very simple you can either:
 - or endpoint:
 ```echo 'http://target.com/something/?page=home' | ./ppmap```
 
+For mass scanning:  
+``` cat url.txt | ./ppmap``` where **url.txt** contains all url(s) in column.
+
 ## Demo
 ![](https://i.imgur.com/05nvfwX.gif)
 
