@@ -7,7 +7,7 @@ Make sure to have [chromedp](https://github.com/chromedp/chromedp) installed:
 
 ## Installation
 - Automatically  
-  - Download the already compiled binary [here]()
+  - Download the already compiled binary [here](https://github.com/kleiton0x00/ppmap/releases/tag/v1.0.1)
 
 - Manually (compile it yourself)  
   - Clone the project:  
