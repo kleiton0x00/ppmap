@@ -7,7 +7,8 @@ Make sure to have [chromedp](https://github.com/chromedp/chromedp) installed:
 
 ## Installation
 - Automatically  
-  - Download the already compiled binary [here](https://github.com/kleiton0x00/ppmap/releases/tag/v1.0.1)
+  - Download the already compiled binary [here](https://github.com/kleiton0x00/ppmap/releases)
+  - Give it the permission to execute ```chmod +x ppmap```
 
 - Manually (compile it yourself)  
   - Clone the project:  
@@ -19,8 +20,8 @@ Make sure to have [chromedp](https://github.com/chromedp/chromedp) installed:
 
 ## Usage
 
-Using the program is very simple you can either:
-- scan a directory/file:
+Using the program is very simple, you can either:
+- scan a directory/file (or even just the website):
 ```echo 'https://target.com/index.html' | ./ppmap```
 
 - or endpoint:
@@ -32,7 +33,11 @@ For mass scanning:
 ## Demo
 ![](https://i.imgur.com/05nvfwX.gif)
 
-## Features
+Feel free to test the tool on the following websites as a part of demonstration:  
+https://msrkp.github.io/pp/2.html  
+https://ctf.nikitastupin.com/pp/known.html  
+
+## Workflow
 
 - Identify if the website is vulnerable to Prototype Pollution by heuristic scan
 - Fingerprint the known gadgets (checks for specific variables in the global context)
