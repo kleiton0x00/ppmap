@@ -2,6 +2,13 @@
 A simple scanner/exploitation tool written in GO which automatically exploits known and existing gadgets (checks for specific variables in the global context) to perform XSS via Prototype Pollution. NOTE: The program only exploits known gadgets, but does not cover code analysis or any advanced Prototype Pollution exploitation, which may include custom gadgets.
 
 ## Requirements
+Make sure to have Chromium/Chrome installed:  
+```
+sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install google-chrome-stable
+```
 Make sure to have [chromedp](https://github.com/chromedp/chromedp) installed:  
 ```go get -u github.com/chromedp/chromedp```
 
