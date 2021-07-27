@@ -1,7 +1,8 @@
 package main
-import"os"
-import "bufio"
+
 import (
+    "os"
+    "bufio"
     "context"
     "math/rand"
     "log"
