@@ -28,8 +28,8 @@ Make sure to have [chromedp](https://github.com/chromedp/chromedp) installed:
 ## Usage
 
 Using the program is very simple, you can either:
-- scan a directory/file (or even just the website):
-```echo 'https://target.com/index.html' | ./ppmap```
+- scan a directory/file (or even just the website), make sure to add the / on the end just like the example:
+```echo 'https://target.com/' | ./ppmap```
 
 - or endpoint:
 ```echo 'http://target.com/something/?page=home' | ./ppmap```
