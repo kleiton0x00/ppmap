@@ -28,10 +28,10 @@ Make sure to have [chromedp](https://github.com/chromedp/chromedp) installed:
 ## Usage
 
 Using the program is very simple, you can either:
-- scan a directory/file (or even just the website), make sure to add the / on the end just like the example:
-```echo 'https://target.com/' | ./ppmap```
+- scan a directory/file (or even just the website itself):  
+```echo 'https://target.com' | ./ppmap```
 
-- or endpoint:
+- or endpoint:  
 ```echo 'http://target.com/something/?page=home' | ./ppmap```
 
 For mass scanning:  
@@ -43,6 +43,7 @@ For mass scanning:
 Feel free to test the tool on the following websites as a part of demonstration:  
 https://msrkp.github.io/pp/2.html  
 https://ctf.nikitastupin.com/pp/known.html  
+https://grey-acoustics.surge.sh
 
 ## Workflow
 
