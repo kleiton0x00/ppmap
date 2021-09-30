@@ -48,3 +48,8 @@ https://grey-acoustics.surge.sh
 Many thanks to @Tomnomnom for the inspiration: https://www.youtube.com/watch?v=Gv1nK6Wj8qM&t=1558s  
 The workflow of this program is hugely based on this article: https://infosecwriteups.com/javascript-prototype-pollution-practice-of-finding-and-exploitation-f97284333b2  
 The fingerprint javascript file is based on this git: https://gist.github.com/nikitastupin/b3b64a9f8c0eb74ce37626860193eaec
+
+## In the news
+- 14/06/21: [Intigriti Bug Bytes #131](https://blog.intigriti.com/2021/07/14/bug-bytes-131-credential-stuffing-in-bug-bounty-hijacking-shortlinks-hacker-shows/) - Tool of the week
+- 26/06/21: [Hackin9](https://hakin9.org/ppmap-a-scanner-exploitation-tool/)
+- 23/09/2021: [GeeksForGeeks](https://www.geeksforgeeks.org/ppmap-a-scanner-or-exploitation-tool-written-in-go/)
