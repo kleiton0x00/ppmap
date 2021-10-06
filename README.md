@@ -3,7 +3,7 @@ A simple scanner/exploitation tool written in GO which automatically exploits kn
 
 ## Requirements
 Make sure to have Chromium installed (Chrome will also do the job):  
-```sudo apt-get install chromium```
+```sudo apt-get install chromium-browser```
 
 Make sure to have [chromedp](https://github.com/chromedp/chromedp) installed:  
 ```go get -u github.com/chromedp/chromedp```
