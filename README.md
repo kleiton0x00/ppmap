@@ -53,3 +53,4 @@ The fingerprint javascript file is based on this git: https://gist.github.com/ni
 - 14/06/21: [Intigriti Bug Bytes #131](https://blog.intigriti.com/2021/07/14/bug-bytes-131-credential-stuffing-in-bug-bounty-hijacking-shortlinks-hacker-shows/) - Tool of the week
 - 26/06/21: [Hackin9](https://hakin9.org/ppmap-a-scanner-exploitation-tool/)
 - 23/09/2021: [GeeksForGeeks](https://www.geeksforgeeks.org/ppmap-a-scanner-or-exploitation-tool-written-in-go/)
+- 22/10/2021: [Hacktricks](https://book.hacktricks.xyz/pentesting-web/deserialization/nodejs-proto-prototype-pollution/client-side-prototype-pollution) - Client Side Prototype Pollution
