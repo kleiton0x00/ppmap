@@ -334,7 +334,5 @@ func queryEnum(u string, quote string) {
         }
         
         break 
-    }  
-    //exit to avoid looping with other quotes
-    os.Exit(0)    
+    }     
 }
