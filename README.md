@@ -10,7 +10,7 @@ Make sure to have [chromedp](https://github.com/chromedp/chromedp) installed:
 
 ## Installation
 - The recommended way to install the software is to compile it yourself by executing:  
-```go get -u github.com/kleiton0x00/ppmap.git```  
+```go get -u github.com/kleiton0x00/ppmap```  
   Check if it is successfuly compiled by typing in the terminal: ```ppmap```
   
 - If you face error during manually compiling (for some reasons), you can download the precompiled one:  
@@ -39,7 +39,7 @@ https://grey-acoustics.surge.sh
 
 ## Workflow
 
-- Identify if the website is vulnerable to Prototype Pollution by heuristic scan
+- Identify if the website is vulnerable to Prototype Pollution by heuristic scan (via location.hash and location.search)
 - Fingerprint the known gadgets (checks for specific variables in the global context)
 - Display the final XSS payload which can be exploited
 
