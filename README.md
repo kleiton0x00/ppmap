@@ -13,12 +13,16 @@ go get -u github.com/chromedp/chromedp
 ```
 
 ## Installation
-- Run the following command to get the repo: 
+- Run the following command to clone the repo: 
  ```bash
-go install -v github.com/kleiton0x00/ppmap@latest
+git clone https://github.com/kleiton0x00/ppmap.git
  ```
+ - Change the directory to ppmap and execute **setup.sh**:  
+```bash
+cd ppmap && bash setup.sh
+```
   
-- If you face error during manually compiling (for some reasons), you can download the precompiled one:  
+- If you face error during manually compiling or during the setup (for some reasons), you can download the precompiled one:  
   - Download the already compiled binary [here](https://github.com/kleiton0x00/ppmap/releases)
   - Give it the permission to execute ```chmod +x ppmap```
 
