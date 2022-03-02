@@ -13,28 +13,10 @@ go get -u github.com/chromedp/chromedp
 ```
 
 ## Installation
-- The recommended way to install the software is to compile it yourself, by following the steps:  
- 1. Clone the repository:  
-```bash
-git clone https://github.com/kleiton0x00/ppmap.git
-```  
- 2. Go to **ppmap** directory  
-```bash
-cd ppmap
-```  
- 4. Create a new go.mod  
-```bash
-go mod init ppmap
-```  
- 5. Install the **chromedp** module  
-```bash
-go get github.com/chromedp/chromedp
-```  
- 6. Build the executable file  
-```bash
-go build ppmap.go
-```  
-7. Check if it is successfuly compiled by typing in the terminal: ```ppmap```
+- Run the following command to get the repo: 
+ ```bash
+go install -v github.com/kleiton0x00/ppmap@latest
+ ```
   
 - If you face error during manually compiling (for some reasons), you can download the precompiled one:  
   - Download the already compiled binary [here](https://github.com/kleiton0x00/ppmap/releases)
