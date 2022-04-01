@@ -1,5 +1,11 @@
-echo [+] Installing the latest version of ppmap
-go install -v github.com/kleiton0x00/ppmap@latest
+echo [+] Creating a Go module
+go mod init ppmap
+
+echo [+] Installing the required library
+go get github.com/chromedp/chromedp
+
+echo [+] Building the binary
+go build
 
 echo [+] Moving the compiled binary to /usr/bin
 cd /home/$USER/go/bin
