@@ -8,7 +8,6 @@ echo [+] Building the binary
 go build
 
 echo [+] Moving the compiled binary to /usr/bin
-cd /home/$USER/go/bin
 sudo mv ppmap /usr/bin
 
 echo [+] Setup finished!
