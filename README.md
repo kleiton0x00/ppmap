@@ -7,11 +7,6 @@ Make sure to have Chromium installed (Chrome will also do the job):
 sudo apt-get install chromium-browser
 ```
 
-Make sure to have [chromedp](https://github.com/chromedp/chromedp) installed:  
-```bash
-go get -u github.com/chromedp/chromedp
-```
-
 ## Installation
 - Run the following command to clone the repo: 
  ```bash
@@ -19,10 +14,11 @@ git clone https://github.com/kleiton0x00/ppmap.git
  ```
  - Change the directory to ppmap and execute **setup.sh**:  
 ```bash
-cd ppmap && bash setup.sh
-```
+cd ppmap/ && bash setup.sh
+```  
+That's it. Enjoy using ppmap!
   
-- If you face error during manually compiling or during the setup (for some reasons), you can download the precompiled one:  
+- Note: If you face error during manually compiling or during the setup (for some reasons), you can download the precompiled one:  
   - Download the already compiled binary [here](https://github.com/kleiton0x00/ppmap/releases)
   - Give it the permission to execute ```chmod +x ppmap```
 
