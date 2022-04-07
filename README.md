@@ -2,10 +2,7 @@
 A simple scanner/exploitation tool written in GO which automatically exploits known and existing gadgets (checks for specific variables in the global context) to perform XSS via Prototype Pollution. NOTE: The program only exploits known gadgets, but does not cover code analysis or any advanced Prototype Pollution exploitation, which may include custom gadgets.
 
 ## Requirements
-Make sure to have Chromium installed (Chrome will also do the job):  
-```bash
-sudo apt-get install chromium-browser
-```
+Make sure to have Chromium installed. No need to worry, **setup.sh** will automatically install that for you.  
 
 ## Installation
 - Run the following command to clone the repo: 
