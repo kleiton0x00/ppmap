@@ -1,4 +1,4 @@
-# ppmap
+# ppmap ![markdown_statistic](https://img.shields.io/github/downloads/kleiton0x00/ppmap/total)
 A simple scanner/exploitation tool written in GO which automatically exploits known and existing gadgets (checks for specific variables in the global context) to perform XSS via Prototype Pollution. NOTE: The program only exploits known gadgets, but does not cover code analysis or any advanced Prototype Pollution exploitation, which may include custom gadgets.
 
 ## Requirements
