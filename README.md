@@ -53,6 +53,7 @@ The fingerprint javascript file is based on this git: https://gist.github.com/ni
 
 ## In the news
 - 14/06/21: [Intigriti Bug Bytes #131](https://blog.intigriti.com/2021/07/14/bug-bytes-131-credential-stuffing-in-bug-bounty-hijacking-shortlinks-hacker-shows/) - Tool of the week
-- 26/06/21: [Hackin9](https://hakin9.org/ppmap-a-scanner-exploitation-tool/)
-- 23/09/2021: [GeeksForGeeks](https://www.geeksforgeeks.org/ppmap-a-scanner-or-exploitation-tool-written-in-go/)
-- 22/10/2021: [Hacktricks](https://book.hacktricks.xyz/pentesting-web/deserialization/nodejs-proto-prototype-pollution/client-side-prototype-pollution) - Client Side Prototype Pollution
+- 26/06/21: [Hackin9](https://hakin9.org/ppmap-a-scanner-exploitation-tool/) - Article  
+- 23/09/21: [GeeksForGeeks](https://www.geeksforgeeks.org/ppmap-a-scanner-or-exploitation-tool-written-in-go/) - Article  
+- 22/10/21: [Hacktricks](https://book.hacktricks.xyz/pentesting-web/deserialization/nodejs-proto-prototype-pollution/client-side-prototype-pollution) - Client Side Prototype Pollution  
+- 04/06/22 [BlackArch Linux](https://github.com/BlackArch/blackarch-site/commit/68696c40be1629095cd547559ce078a4c77a7073) - Officially added in BlackArch Linux :tada:
